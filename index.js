@@ -31,7 +31,11 @@ app.use('/api/banners', bannerRouter);
 
 
 
-mongoose.connect(process.env.MONGODB_URL).then(()=>{
+mongoose.connect(process.env.MONGODB_URL,{
+   
+    serverSelectionTimeoutMS: 30000,
+    socketTimeoutMS: 45000,
+},).then(()=>{
     console.log("Database connected successfully");
 }).catch((err)=>{
     console.log(err.message);
